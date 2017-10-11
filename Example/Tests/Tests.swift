@@ -1,6 +1,6 @@
 import UIKit
 import XCTest
-@testable import CodableExtensions
+import CodableExtensions
 
 struct Person: Decodable {
     let name: String

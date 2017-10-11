@@ -7,12 +7,14 @@
 
 import Foundation
 
-class RegexCodableTransformer: DecodingContainerTransformer {
+public class RegexCodableTransformer: DecodingContainerTransformer {
     
-    typealias Input = String
-    typealias Output = NSRegularExpression
+    public typealias Input = String
+    public typealias Output = NSRegularExpression
     
-    func transform(_ decoded: Input) throws -> Output {
+    public init() {}
+    
+    public func transform(_ decoded: Input) throws -> Output {
         return try NSRegularExpression(pattern: decoded, options: [])
     }
 }

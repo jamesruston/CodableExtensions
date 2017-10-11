@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol DecodingContainerTransformer {
+public protocol DecodingContainerTransformer {
     associatedtype Input
     associatedtype Output
     func transform(_ decoded: Input) throws -> Output

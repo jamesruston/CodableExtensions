@@ -1,29 +1,96 @@
 import UIKit
 import XCTest
-import CodableExtensions
+@testable import CodableExtensions
+
+struct Person: Decodable {
+    let name: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case name
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(.name)
+    }
+}
+
+struct RegexWrapper: Decodable {
+    let regex: NSRegularExpression
+    
+    private enum CodingKeys: String, CodingKey {
+        case regex
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        regex = try container.decode(.regex, transformer: RegexCodableTransformer())
+    }
+}
+
+struct OptionalRegexWrapper: Decodable {
+    let regex: NSRegularExpression?
+    
+    private enum CodingKeys: String, CodingKey {
+        case regex
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        regex = try? container.decode(.regex, transformer: RegexCodableTransformer())
+    }
+}
 
 class Tests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure() {
-            // Put the code you want to measure the time of here.
+    func testDecodingStandardType() {
+        let json = """
+        {
+         "name": "James Ruston"
         }
+        """.data(using: .utf8)!
+        
+        let person = try! JSONDecoder().decode(Person.self, from: json)
+        
+        XCTAssertEqual(person.name, "James Ruston")
+    }
+    
+    func testCustomTransformer() {
+        let json = """
+        {
+         "regex": ".*"
+        }
+        """.data(using: .utf8)!
+        
+        let wrapper = try! JSONDecoder().decode(RegexWrapper.self, from: json)
+        
+        XCTAssertEqual(wrapper.regex.pattern, ".*")
+    }
+    
+    func testInvalidType() {
+        let json = """
+        {
+         "regex": true
+        }
+        """.data(using: .utf8)!
+        
+        let wrapper = try? JSONDecoder().decode(RegexWrapper.self, from: json)
+        
+        XCTAssertNil(wrapper)
+    }
+    
+    func testInvalidRegex() {
+        let json = """
+        {
+         "regex": "["
+        }
+        """.data(using: .utf8)!
+        
+        let wrapper = try! JSONDecoder().decode(OptionalRegexWrapper.self, from: json)
+        
+        XCTAssertNil(wrapper.regex)
     }
     
 }
+
+

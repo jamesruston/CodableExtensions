@@ -74,6 +74,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A26356B1F8E56CE00E12897 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1A2635671F8E4CF200E12897 /* CodableExtensions.swift */,
+				1A2635651F8E4CF200E12897 /* DecodingContainerTransformer.swift */,
+				1A2635661F8E4CF200E12897 /* RegexCodeableTransformer.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		1F3D0A99271E532CC39FE07BBFAD73B2 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,9 +171,7 @@
 		F489167A08AC05F69D102D38063B0473 /* CodableExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				1A2635671F8E4CF200E12897 /* CodableExtensions.swift */,
-				1A2635651F8E4CF200E12897 /* DecodingContainerTransformer.swift */,
-				1A2635661F8E4CF200E12897 /* RegexCodeableTransformer.swift */,
+				1A26356B1F8E56CE00E12897 /* Classes */,
 				4B19AE21BD230A1F61E537A2990A919D /* Support Files */,
 			);
 			name = CodableExtensions;

@@ -13,6 +13,12 @@ it, simply add the following line to your Podfile:
 pod 'CodableExtensions'
 ```
 
+and run
+
+```bash
+pod install
+```
+
 ## Usage
 
 #### Custom Transformations

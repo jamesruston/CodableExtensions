@@ -42,7 +42,7 @@ public class RegexCodableTransformer: DecodingContainerTransformer {
 }
 ```
 
-The `Input` and `Output` types need defining to match the type you expect to be converting from an to, in this case the input is a `String` and the output is an `NSRegularExpression`.
+The `Input` and `Output` types need defining to match the type you expect to be converting from and to, in this case the input is a `String` and the output is an `NSRegularExpression`.
 
 The logic to perfrom the transformation is then performed in the `transform` function. If there's an error at any point then that needs to be thrown.
 

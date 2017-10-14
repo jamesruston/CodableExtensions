@@ -57,6 +57,8 @@ init(from decoder: Decoder) throws {
 
 For full examples check out the tests https://github.com/jamesruston/CodableExtensions/blob/master/Example/Tests/Tests.swift
 
+For a writeup on the motivation behind this library check my Medium article out https://medium.com/@James_Ruston/codable-vs-objectmapper-af5fe8e8efd5 
+
 ## Author
 
 https://twitter.com/james_ruston

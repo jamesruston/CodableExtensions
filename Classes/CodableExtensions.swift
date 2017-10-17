@@ -19,3 +19,13 @@ public extension KeyedDecodingContainer {
         return try self.decode(T.self, forKey: key)
     }
 }
+
+public extension KeyedEncodingContainer {
+    
+    public mutating func encode<Transformer: EncodingContainerTransformer>(_ value: Transformer.Output,
+                                                                  forKey key: KeyedEncodingContainer.Key,
+                                                                  transformer: Transformer) throws where Transformer.Input : Encodable {
+        let transformed: Transformer.Input = try transformer.transform(value)
+        try self.encode(transformed, forKey: key)
+    }
+}

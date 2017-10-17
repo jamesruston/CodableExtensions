@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class RegexCodableTransformer: DecodingContainerTransformer {
+public class RegexCodableTransformer: CodingContainerTransformer {
     
     public typealias Input = String
     public typealias Output = NSRegularExpression
@@ -16,5 +16,9 @@ public class RegexCodableTransformer: DecodingContainerTransformer {
     
     public func transform(_ decoded: Input) throws -> Output {
         return try NSRegularExpression(pattern: decoded, options: [])
+    }
+    
+    public func transform(_ encoded: NSRegularExpression) throws -> String {
+        return encoded.pattern
     }
 }

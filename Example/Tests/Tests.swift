@@ -15,7 +15,7 @@ struct Person: Decodable {
     }
 }
 
-struct RegexWrapper: Decodable {
+struct RegexWrapper: Codable {
     let regex: NSRegularExpression
     
     private enum CodingKeys: String, CodingKey {
@@ -25,6 +25,11 @@ struct RegexWrapper: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         regex = try container.decode(.regex, transformer: RegexCodableTransformer())
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container =  encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(regex, forKey: .regex, transformer: RegexCodableTransformer())
     }
 }
 
@@ -91,6 +96,18 @@ class Tests: XCTestCase {
         XCTAssertNil(wrapper.regex)
     }
     
+    func testEncoding() {
+        let jsonString = "{\"regex\":\".*\"}"
+        let json = jsonString.data(using: .utf8)!
+        
+        let wrapper = try! JSONDecoder().decode(RegexWrapper.self, from: json)
+        let encoded = try! JSONEncoder().encode(wrapper)
+        
+        let output = String(data: encoded, encoding: .utf8)!
+        
+        XCTAssertEqual(jsonString, output)
+        
+    }
 }
 
 

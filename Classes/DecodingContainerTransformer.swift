@@ -12,3 +12,11 @@ public protocol DecodingContainerTransformer {
     associatedtype Output
     func transform(_ decoded: Input) throws -> Output
 }
+
+public protocol EncodingContainerTransformer {
+    associatedtype Input
+    associatedtype Output
+    func transform(_ encoded: Output) throws -> Input
+}
+
+public typealias CodingContainerTransformer = DecodingContainerTransformer & EncodingContainerTransformer

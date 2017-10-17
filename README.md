@@ -23,7 +23,9 @@ pod install
 
 #### Custom Transformations
 
-To make a custom transformer, you just need to implement `DecodingContainerTransformer`
+##### Decoding
+
+To make a custom decoding transformer, you just need to implement `DecodingContainerTransformer`
 An example is provided in the project for converting a Regex
 
 ```swift
@@ -54,6 +56,33 @@ init(from decoder: Decoder) throws {
         regex = try container.decode(.regex, transformer: RegexCodableTransformer())
 }
 ```
+
+##### Encoding
+
+To make a custom encoding transformer, make a class implementing `EncodingContainerTransformer`
+
+Example encoding an NSRegularExpression
+```swift
+class RegexCodableTransformer: EncodingContainerTransformer {
+
+    typealias Input = String
+    typealias Output = NSRegularExpression
+    
+    public func transform(_ encoded: Output) throws -> Input {
+        return encoded.pattern
+    }
+}
+```
+and to use this transformer implement the Encodable function `encode(to encoder: Encoder)`
+
+```swift
+func encode(to encoder: Encoder) throws {
+        var container =  encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(regex, forKey: .regex, transformer: RegexCodableTransformer())
+}
+```
+
+If your transformer conforms to both the `EncodingContainerTransformer` and `DecodingContainerTransformer` you can use the `CodingContainerTransformer` typealias
 
 For full examples check out the tests https://github.com/jamesruston/CodableExtensions/blob/master/Example/Tests/Tests.swift
 

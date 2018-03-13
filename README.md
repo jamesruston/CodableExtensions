@@ -21,9 +21,9 @@ pod install
 
 ## Usage
 
-#### Custom Transformations
+### Custom Transformations
 
-##### Decoding
+#### Decoding
 
 To make a custom decoding transformer, you just need to implement `DecodingContainerTransformer`
 An example is provided in the project for converting a Regex
@@ -57,7 +57,7 @@ init(from decoder: Decoder) throws {
 }
 ```
 
-##### Encoding
+#### Encoding
 
 To make a custom encoding transformer, make a class implementing `EncodingContainerTransformer`
 

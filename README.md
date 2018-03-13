@@ -90,7 +90,7 @@ For a writeup on the motivation behind this library check my Medium article out 
 
 ## Author
 
-https://twitter.com/james_ruston
+https://medium.com/@James_Ruston/
 
 ## License
 

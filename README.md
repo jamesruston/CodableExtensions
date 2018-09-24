@@ -3,6 +3,7 @@
 [![Version](https://img.shields.io/cocoapods/v/CodableExtensions.svg?style=flat)](http://cocoapods.org/pods/CodableExtensions)
 [![License](https://img.shields.io/cocoapods/l/CodableExtensions.svg?style=flat)](http://cocoapods.org/pods/CodableExtensions)
 [![Platform](https://img.shields.io/cocoapods/p/CodableExtensions.svg?style=flat)](http://cocoapods.org/pods/CodableExtensions)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 ## Installation
 
@@ -85,6 +86,30 @@ If your transformer conforms to both the `EncodingContainerTransformer` and `Dec
 For full examples check out the tests https://github.com/jamesruston/CodableExtensions/blob/master/Example/Tests/Tests.swift
 
 For a writeup on the motivation behind this library check my Medium article out https://medium.com/@James_Ruston/codable-vs-objectmapper-af5fe8e8efd5 
+
+## Installation
+
+### Cocoapods
+
+CodableExtensions is available through [CocoaPods](https://cocoapods.org). To install it, simply add the following line to your Podfile:
+
+```ruby
+pod 'CodableExtensions'
+```
+
+Run `pod install` to integrate `CodableExtensions ` with your workspace.
+
+### Carthage
+
+CodableExtensions is available through [Carthage](https://github.com/Carthage/Carthage). To install it, simply add the following line to your Carthage file:
+
+
+```
+github "jamesruston/CodableExtensions"  
+```
+
+Run `carthage update` to build the framework and drag the built `CodableExtensions.framework` into your Xcode project.
+
 
 ## Author
 

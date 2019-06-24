@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CodableExtensions'
-  s.version          = '0.2.1'
+  s.version          = '0.3.0'
   s.summary          = 'CodableExtensions provides some useful extensions to Swift Codable'
   s.description      = <<-DESC
 Adds extensions to allow custom transformations during decoding. Also makes the interface a bit cleaner.

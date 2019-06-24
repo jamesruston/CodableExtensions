@@ -1,6 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'CodableExtensions'
+  s.swift_version    = '5.0'
   s.version          = '0.3.0'
   s.summary          = 'CodableExtensions provides some useful extensions to Swift Codable'
   s.description      = <<-DESC
